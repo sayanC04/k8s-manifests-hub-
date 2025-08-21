@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-deployment #deployer name
+  namespace: nginx # the deploy file in the nginx namespace and folder
+  labels:
+    app: nginx #this is the label matchs with other label
+
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx #this is the criteria to sort out the pods which pods to manage
+  template: #pod details
+    metadata:
+      name: nginx-pod
+      namespace: nginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
