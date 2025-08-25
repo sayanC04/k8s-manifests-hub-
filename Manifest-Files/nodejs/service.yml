@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:                       #METADATA of the Services
+  name: nodejs-service
+  namespace: nodejs
+
+
+spec:
+  selector:
+    app: nodejs #Use a right label to match your pod
+  ports:
+  - protocol: TCP
+    targetPort: 8000 #Port of Pod
+    port: 8000 #Port of Service
+    
+  type: NodePort
+

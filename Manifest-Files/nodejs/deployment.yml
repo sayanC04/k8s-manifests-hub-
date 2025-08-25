@@ -1,0 +1,25 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nodejs-deployment #deployer name
+  namespace: nodejs # the deploy file in the nodejs namespace and folder
+  labels:
+    app: nodejs #this is the label matchs with other label
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs #this is the criteria to sort out the pods which pods to manage
+  template: #pod details
+    metadata:
+      name: nodejs-pod
+      namespace: nodejs
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: trainwithshubham/node-app:latest
+        ports:
+        - containerPort: 8000
